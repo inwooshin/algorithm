@@ -2,7 +2,7 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
-//피보나치 
+//피보나치 수영에 합병하기 222
 int solution(int n) {
     int answer = 0;
     int* piv = (int *)malloc((n+1) * sizeof(int));
