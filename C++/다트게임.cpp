@@ -44,3 +44,41 @@ int solution(string s) {
     }
     return answer;
 }
+
+//스트링 스트림으로 문자열 컨트롤하기 공부 
+// 이것을 사용해서 문자열을 컨트롤할 수 있다. 
+void Practice(void) { 
+ 	int num;
+ 	char ch;
+	stringstream stream1;
+
+	string string1 = "25abss 55 asdbsd";	  
+	stream1.str(string1);
+
+	//스트링 스트림으로 하면 int 형으로 하면 2자리수 3자리수, 한 뭉텅어리로 나온다.
+	stream1 >> num;
+	cout << "num: " << num << endl;  // displays numbers, one per line
+	
+	//문자열을 get 하면 1개의 문자열씩만 들어온다.  
+	ch = stream1.get();
+	cout << "char : " << ch << endl;
+	ch = stream1.get();
+	cout << "char : " << ch << endl;
+	ch = stream1.get();
+	cout << "char : " << ch << endl;
+	ch = stream1.get();
+	cout << "char : " << ch << endl;
+	ch = stream1.get();
+	cout << "char : " << ch << endl;
+	ch = stream1.get();
+	cout << "char : " << ch << endl;
+	ch = stream1.get();
+	cout << "char : " << ch << endl;
+	
+	//unget 을 하면 get 하기 이전으로 돌아간다. 
+	stream1.unget();
+	stream1.unget(); 
+	stream1 >> num;
+	cout << "num: " << num << endl;
+
+} 
