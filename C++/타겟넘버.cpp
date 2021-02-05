@@ -21,3 +21,20 @@ int solution(vector<int> numbers, int target) {
     
     return answer;
 }
+
+// 참고용 코드 DFS 를 사용해서 값을 도출한  것 
+void dfs(vector<int>& numbers, int& answer, int target, int count = 0, int sum = 0){
+    if (count == numbers.size() - 1) {
+        if (target == sum + numbers[count])        answer++;
+        if (target == sum - numbers[count])        answer++;
+        return;
+    }
+    dfs(numbers, answer, target, count + 1, sum + numbers[count]);
+    dfs(numbers, answer, target, count + 1, sum - numbers[count]);
+}
+ 
+int solution(vector<int> numbers, int target) {
+    int answer = 0;
+    dfs(numbers, answer, target);
+    return answer;
+}
