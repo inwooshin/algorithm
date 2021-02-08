@@ -15,35 +15,37 @@ int solution(string s) {
         string zip = "";
         for(int i = 0 ; i < s.length() ; i += length){
             string all = s.substr(i, s.length());
-            if(i+length > s.length() - 1){
-                if(length == 1 && !com.compare(s.substr(i, length))) count++;
+            if(i+length >= s.length() - 1){
+                if(length <= s.length() - i && !com.compare(s.substr(i, length))) count++;
                 if(count > 0){
-                    cout << "up" << endl;
                     zip += to_string(count + 1) + com;
                                   count = 0;}
-                else{ cout << "down" << endl;
-                    zip += s.substr(i, s.length());}
-                
-                if(com.find(s[i]) != 0) zip += s.substr(i, s.length());
+                else if(count == 0) zip += com + s.substr(i, s.length());
                 
                 break;
             }
             if(all.find(s.substr(i, length)) == 0){
-                if(!com.compare(s.substr(i, length))) count++;
-                else if(count == 0) zip += com;
+                if(!com.compare(s.substr(i, length))){count++;}
                 else if(count > 0){
                     zip += to_string(count + 1) + com;
                     count = 0;
                 }
+                else if(i != 0 && count == 0){zip += s.substr(i, length);}
+
                 com = s.substr(i, length);
             }
-            else zip += s.substr(i, length);
+            else{zip += s.substr(i, length);}
+            
         }
+        cout << "length : " << length << ", zip : " << zip << endl;
+        if(zip.empty()){
+            count = 0;
+            length++;
+            continue;}
         if(before > zip.length()) before = zip.length();
         count = 0;
         length++;
         
-        cout << "zip : " << zip << endl;
     }
     
     return before;
