@@ -2,26 +2,20 @@
 #include <vector>
 #include <algorithm>
 #include <map>
-#include <iostream>
 
 using namespace std;
 
 map<string, int> match; 
 
-void combination(int n, int count, int j, vector<int>& check, string orders){
+void combination(int n, int count, int j, vector<int>& check, vector<char>& orders){
     string ins = "";
-    vector<char> re;
+    
     if(count == n){
         for(int i = 0 ; i < orders.size() ; i++)
             if(check[i]){
-                re.push_back(orders[i]);
+                ins += orders[i];
             }
-        sort(re.begin(), re.end());
-        for(int i = 0 ; i < re.size() ; i++)
-            ins += re[i];
-    }
-    
-    if(count == n){
+        
         if(match.find(ins) == match.end()) match[ins] = 1;
         else match[ins]++;
         
@@ -46,9 +40,13 @@ vector<string> solution(vector<string> orders, vector<int> course) {
     string all = "";
     
     for(int i = 0 ; i < orders.size() ; i++){
+        for(int j = 0 ; j < orders[i].size() ; j++){
+            compare.push_back(orders[i][j]); 
+        }
+        sort(compare.begin(), compare.end());
         for(int j = 0 ; j < course.size() ; j++){
             if(orders[i].length() >= course[j]){
-                combination(course[j], 0, 0, check, orders[i]);
+                combination(course[j], 0, 0, check, compare);
                 check.clear();
                 check.resize(10, 0);
             }
@@ -63,8 +61,7 @@ vector<string> solution(vector<string> orders, vector<int> course) {
         for(auto it = match.begin() ; it != match.end() ; it++){
             if(it->first.length() == course[i]){
                 mCount[it->first] = it->second;
-                if(max < it->second){max = it->second;    maxit = it;
-                }
+                if(max < it->second) max = it->second;
             }
         }
         if(max < 2) continue;
