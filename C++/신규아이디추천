@@ -1,0 +1,35 @@
+#include <string>
+#include <iostream>
+#include <cctype>
+
+using namespace std;
+
+string solution(string new_id) {
+    string answer = "";
+    
+    for(int i = 0 ; i < new_id.size() ; i++){
+        if(isupper(new_id[i]) != 0) answer += tolower(new_id[i]);
+        else if(islower(new_id[i]) != 0 || isdigit(new_id[i]) != 0 || new_id[i] == '-' || new_id[i] == '_') answer += new_id[i];
+        switch(new_id[i]){
+            case '.' :
+                if(answer.empty()) break;
+                else if(answer.back() == '.') break;
+                answer += new_id[i];
+                break;
+            default :
+                break;
+        }
+    }
+    
+    if(answer.back() == '.')    for(int i = 0 ; answer.back() == '.' ; i++) answer.pop_back();
+    
+    if(answer.length() == 0) answer += 'a';
+    else if(answer.length() > 15){
+        for(int i = 0 ; answer.length() != 15 ; i++) answer.pop_back();
+        if(answer.back() == '.') for(int i = 0 ; answer.back() == '.' ; i++) answer.pop_back();
+    }
+    
+    if(answer.length() < 3) for(int i = 0 ; answer.length() != 3 ; i++) answer += answer.back();
+    
+    return answer;
+}
