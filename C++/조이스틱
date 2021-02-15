@@ -1,0 +1,43 @@
+#include <string>
+#include <vector>
+#include <iostream>
+
+using namespace std;
+
+int solution(string name) {
+    int answer = 0, count = 0, i = 0, right = 0, left = 0, rightOn = 0, leftOn = 0;
+    vector<bool>check(name.length(), 0);
+    
+    while(count < name.length()){
+        count++;
+        if(name[i] - 'A' <= 13) answer += name[i] - 'A';
+        else answer += 26 - (name[i] - 'A');
+        check[i] = 1, right = 0, left = 0, rightOn = 0, leftOn = 0;
+        int tmp = i;
+        for(int j = 0; j < name.length() ; j++){
+            tmp++;
+            if(tmp > name.length() - 1){tmp = tmp % name.length();}
+            if(name[tmp] == 'A' && !check[tmp]){check[tmp] = 1; right++;}
+            else if(name[tmp] == 'A' && check[tmp]) right++;
+            else if(name[tmp] != 'A' && check[tmp]) right++;
+            else if(name[tmp] != 'A' && !check[tmp]){right++; rightOn++; break;}
+        }
+        tmp = i;
+        for(int j = 0; j < name.length() ; j++){
+            tmp--;
+            if(tmp < 0) tmp = tmp + name.length();
+            if(name[tmp] == 'A' && !check[tmp]){check[tmp] = 1; left++;}
+            else if(name[tmp] == 'A' && check[tmp]) left++;
+            else if(name[tmp] != 'A' && check[tmp]) left++;
+            else if(name[tmp] != 'A' && !check[tmp]){left++; leftOn++; break;}
+        }
+        if(rightOn == 0 && rightOn == 0){ break;}
+        else if(rightOn == 0) right = name.length();
+        else if(leftOn == 0) left = name.length();
+        
+        if(right <= left){i = (i + right) % name.length(); answer += right;}
+        else{i = tmp; answer += left;}
+    }
+    
+    return answer;
+}
