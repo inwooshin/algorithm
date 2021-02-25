@@ -3,9 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-// ÆÄ¶ó¹ÌÅÍ·Î ÁÖ¾îÁö´Â ¹®ÀÚ¿­Àº const·Î ÁÖ¾îÁı´Ï´Ù. º¯°æÇÏ·Á¸é ¹®ÀÚ¿­À» º¹»çÇØ¼­ »ç¿ëÇÏ¼¼¿ä.
 char* solution(const char* s) {
-    // return °ªÀº malloc µî µ¿Àû ÇÒ´çÀ» »ç¿ëÇØÁÖ¼¼¿ä. ÇÒ´ç ±æÀÌ´Â »óÈ²¿¡ ¸Â°Ô º¯°æÇØÁÖ¼¼¿ä
     int len = strlen(s);
     char* answer = (char*)malloc(len);
     strcpy(answer, s);
@@ -22,4 +20,23 @@ char* solution(const char* s) {
     }
 
     return answer;
+}
+
+// ì´ë ‡ê²Œë„ í’€ ìˆ˜ ìˆìŠµë‹ˆë‹¤. í•¨ìˆ˜ê°€ ì›Œë‚™ ê·¸ì§€ ê°™ì•„ì„œ ë§¤ê°œë³€ìˆ˜ë¥¼ ì£¼ì†Œë¡œ ê°–ê³  ì˜¤ì§€
+// ì•Šìœ¼ë©´ ì œëŒ€ë¡œ ë¶„ë³„ì´ ì•ˆë  ìˆ˜ê°€ ìˆë‹¤.
+int compare (const void * a, const void * b){
+    if(*(char *)a < *(char *)b) return 1;
+    else if(*(char *)a > *(char *)b) return -1;
+    else return 0;
+}
+
+// íŒŒë¼ë¯¸í„°ë¡œ ì£¼ì–´ì§€ëŠ” ë¬¸ìì—´ì€ constë¡œ ì£¼ì–´ì§‘ë‹ˆë‹¤. ë³€ê²½í•˜ë ¤ë©´ ë¬¸ìì—´ì„ ë³µì‚¬í•´ì„œ ì‚¬ìš©í•˜ì„¸ìš”.
+char* solution(const char* s) {
+    // return ê°’ì€ malloc ë“± ë™ì  í• ë‹¹ì„ ì‚¬ìš©í•´ì£¼ì„¸ìš”. í• ë‹¹ ê¸¸ì´ëŠ” ìƒí™©ì— ë§ê²Œ ë³€ê²½í•´ì£¼ì„¸ìš”
+    char* str = (char *)malloc(strlen(s));
+    strcpy(str,s);
+    
+    qsort(str, strlen(s), 1, compare);
+
+    return str;
 }
