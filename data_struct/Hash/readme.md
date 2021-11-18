@@ -5,7 +5,7 @@
     - 분리 연결법
         - Chaining 방식(연결해주는 방식) 을 사용해서 특정 인덱스에 겹칠 경우 자료구조를 활용해서 추가메모리를 활용한 다음 데이터를 저장하는 방식이다. Java8 의 Hash 테이블이 실제로 아래의 트리구조로 이루어져있다. 연결리스트로 하는 방식또한 있다.
         
-        ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f6984146-c4ca-40a7-b6b5-e9149ba3bc90/Untitled.png)
+        ![Untitled](https://user-images.githubusercontent.com/59462895/139786402-a5a2c898-d4fe-42f3-b868-82d89f7186a2.png)
         
     - 개방 주소법
         1. 겹칠 경우 설정해준 고정 폭만큼 이동해서 비어있는 인덱스에 넣어주기
