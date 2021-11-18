@@ -1,5 +1,3 @@
-# 해시
-
 ### 해시 알고리즘
 
 - 해시 알고리즘은 Key 와 Value 로 데이터를 저장하는 자료구조이다. 특정 해시함수를 사용해서 고유한 인덱스를 정하고, 그 인덱스에 해당하는 값을 저장하는 구조이다.
@@ -7,8 +5,7 @@
     - 분리 연결법
         - Chaining 방식(연결해주는 방식) 을 사용해서 특정 인덱스에 겹칠 경우 자료구조를 활용해서 추가메모리를 활용한 다음 데이터를 저장하는 방식이다. Java8 의 Hash 테이블이 실제로 아래의 트리구조로 이루어져있다. 연결리스트로 하는 방식또한 있다.
         
-        ![Untitled](https://user-images.githubusercontent.com/59462895/139786402-a5a2c898-d4fe-42f3-b868-82d89f7186a2.png)
-
+        ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f6984146-c4ca-40a7-b6b5-e9149ba3bc90/Untitled.png)
         
     - 개방 주소법
         1. 겹칠 경우 설정해준 고정 폭만큼 이동해서 비어있는 인덱스에 넣어주기
@@ -60,9 +57,49 @@ for(Entry<Integer, String> entry : map.entrySet()){
 for(Integer i : map.keySet()){
 	System.out.println("[key] : " + i + ", [value] : " + map.get(i));
 }
-	//아래는 풀어서 쓴 코드
+		//아래는 풀어서 쓴 코드
 for(Iterator<Integer> keys = map.keySet().iterator() ; keys.hasNext() ; keys.next()){
 	System.out.println("key : " + key + ", value : " + map.get(key));
+}
+
+//정렬 알고리즘
+//1. value 를 이용 
+		// map.entrySet 이 map 부분에 정렬해줄 map 객체를 넣어주면 된다.
+List<Entry<Integer, Integer>> entryList= new ArrayList<Entry<Integer, Integer>>(map.entrySet());
+
+            // Comparator를 사용하여 정렬
+Collections.sort(entryList, new Comparator<Entry<Integer, Integer>>() {
+    // 값 비교
+    public int compare(Entry<Integer, Integer> obj1, Entry<Integer, Integer> obj2) {
+        //오름차순 정렬
+				//return obj2.getValue().compareTo(obj1.getValue());
+
+				// 내림차순 정렬
+        //return obj2.getValue().compareTo(obj1.getValue());
+    }
+}); //comparator 의 장점은 중간중간 키와 밸류 둘다 고려 가능이다!
+
+		//결과 출력
+for(Entry<Integer, Integer> tmp : inListtmpentryList){
+    System.out.println(tmp.getKey() + " : " + tmp.getValue());
+}
+
+//2. Key 값을 이용
+Object[] mapKey = animalMap.keySet().toArray();
+Arrays.sort(mapKey);
+
+		// 결과 출력하기
+for(Integer keyVal : animalMap.keySet()) {
+	System.out.println(animalMap.get(keyVal));
+}
+
+//Vector to Int 배열
+Vector<Integer> vector = new Vector<>();
+int[] answer = new int[vector.size()];
+int answerCount = 0;
+
+for(int i : vector){
+    answer[answerCount++] = i;
 }
 ```
 
