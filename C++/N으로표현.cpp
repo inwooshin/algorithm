@@ -14,6 +14,8 @@ int getNN(int N, int num){
 }
 
 int solution(int N, int number) {
+    //Dynamic Programming
+    
     if(N == number) return 1;
     
     int answer = 0;
@@ -36,7 +38,7 @@ int solution(int N, int number) {
                             set[i].insert(a / b);
                     }
                 }
-                
+
             }
         }
         
