@@ -1,0 +1,17 @@
+def solution(s):
+    answer = ''
+    
+    a = map(int, s.split())
+    max = -999999
+    min = 999999
+    
+    for i in a:
+        if i > max:
+            max = i
+        
+        if i < min:
+            min = i
+            
+    answer = str(min) + ' ' + str(max)
+    
+    return answer
