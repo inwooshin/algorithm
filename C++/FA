@@ -1,0 +1,31 @@
+#include <iostream>
+
+using namespace std;
+
+in f(int x){
+    int tmp, num = 0;
+
+    for(int i = 0 ; x != 0 ; i++){
+        tmp = x % 10;
+        x /= 10;
+        num++;
+    }
+
+    return tmp * num;
+}
+
+int main(void){
+    int faNum = 0, input = 0, i;
+
+    cin >> input;
+    faNum = input;
+
+    for(int i = 0 ; faNum != input && i < 1000 ; i++){
+        faNum = f(faNum);
+    }
+
+    if(i == 1000) cout << "NFA";
+    else cout << "FA";
+
+    return 0;
+}
